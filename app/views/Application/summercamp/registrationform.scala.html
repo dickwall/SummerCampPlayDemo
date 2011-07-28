@@ -1,0 +1,16 @@
+@(details: models.SignupDetails)(implicit errors: Map[String, play.data.validation.Error])
+<h2>Excellent choice!</h2>
+<form action="@action(controllers.SummerCampSignup.register(details))" method="POST">
+    Name: <input type="text" name="details.name" value="@details.name"/><font color="#ff0000">@errors.get("name")</font><br/>
+    Email: <input type="text" name="details.email" value="@details.email"/><font color="#ff0000">@errors.get("email")</font><br/>
+    Shirt size: <select name="details.shirtSize">
+      @models.ShirtSizes.sizes.map { ss =>
+        <option @(if(ss == details.shirtSize) "selected")>@ss</option>
+      }
+    </select><br/>
+    <input type="checkbox" @(if(details.releaseSigned) "checked") name="details.releaseSigned">Signed Release?</input> <font color="#ff0000">@errors.get("releaseSigned")</font>
+    <br/>
+    <input type="submit" value="Do it!"/>
+
+    <!--components.Graphical.riskBucket(condCode)-->
+</form>

@@ -1,0 +1,13 @@
+@(details: models.SignupDetails)
+
+<h2>Summary</h2>
+<div>
+    Thank you @details.name, for your order.<br/>
+    Your email address @details.email has been sent to several spam lists, for profit, naturally</br>
+    You indicated that your shirt size is @details.shirtSize, meaning you are:
+    @{
+    details.shirtSize match {
+      case "XS" | "S" | "M" => "a liar"
+      case _ => "a bloater"
+    }}
+</div>
